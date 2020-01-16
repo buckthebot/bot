@@ -16,7 +16,7 @@
     "url": "https://github.com/buckthebot/bot/issues"
   },
   "homepage": "https://github.com/buckthebot/bot#readme",
-  "devDependencies": {
+  "dependencies": {
     "express": "^4.17.1"
   }
 }
