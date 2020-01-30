@@ -1,16 +1,17 @@
-var request = require("request");
+const request = require("request");
+const { igOptions } = require("./configs");
 
-module.exports = function(options, callback) {
+module.exports = function(callback) {
     request({
         method: "POST",
         url: "https://demo-api.ig.com/gateway/deal/session",
         json: true,
         body: {
-            identifier: options.identifier,
-            password: options.password
+            identifier: igOptions.identifier,
+            password: igOptions.password
         },
         headers: {
-            "X-IG-API-KEY": options.apiKey,
+            "X-IG-API-KEY": igOptions.apiKey,
             "Version": 2
         }
     }, function(error, response, body) {

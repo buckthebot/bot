@@ -1,0 +1,13 @@
+# IG: https://www.ig.com/uk/myig/settings/api-keys
+export IG_API_KEY=AAAAAAAAAA
+export IG_IDENTIFIER=BBBBBBBBBB
+export IG_PASSWORD=CCCCCCCCCC
+
+# Tweeter: https://developer.twitter.com/en/apps/
+export TWEETER_CONSUMER_KEY=DDDDDDDDDD
+export TWEETER_CONSUMER_SECRET=EEEEEEEEEE
+export TWEETER_ACCESS_TOKEN=FFFFFFFFFFF
+export TWEETER_ACCESS_SECRET=GGGGGGGGGG
+
+# Bot
+export PORT=3000
