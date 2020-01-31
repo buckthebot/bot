@@ -2,15 +2,16 @@ name: Sleep
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '5-59/10 * * * *'
 
 jobs:
   sleep:
     runs-on: ubuntu-latest
     steps:
       - name: Disable worker
-        run: curl 'https://api.heroku.com/apps/buckthebot/formation/worker' \
-          -X PATCH -H "Authorization: Bearer ${{ secrets.HEROKU_API_KEY }}" \
-          -H 'Content-Type: application/json; charset=UTF-8' \
-          -H 'Accept: application/vnd.heroku+json; version=3' \
-          --data '{"quantity":0,"size":"Free","type":"worker"}'
+        run: |
+          curl 'https://api.heroku.com/apps/buckthebot/formation/worker' \
+           -X PATCH -H "Authorization: Bearer ${{ secrets.HEROKU_API_KEY }}" \
+           -H 'Content-Type: application/json; charset=UTF-8' \
+           -H 'Accept: application/vnd.heroku+json; version=3' \
+           --data '{"quantity":0,"size":"Free","type":"worker"}'
