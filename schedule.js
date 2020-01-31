@@ -2,7 +2,7 @@ const CronJob = require("cron").CronJob;
 const tweetBalance = require("./script/tweet-balance");
 
 function cron(pattern, task) {
-    new CronJob(pattern, task, null, true, 'UTC', true);
+    new CronJob(pattern, task, null, true, 'UTC');
 }
 
 /** Buck's schedule: */
