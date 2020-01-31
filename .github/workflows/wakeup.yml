@@ -5,12 +5,12 @@ on:
     - cron: '*/10 * * * *'
 
 jobs:
-  build:
-
+  wakeup:
     runs-on: ubuntu-latest
-
     steps:
       - name: Enable worker
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: curl 'https://api.heroku.com/apps/buckthebot/formation/worker' -X PATCH -H "Authorization: Bearer $HEROKU_API_KEY" -H 'Content-Type: application/json; charset=UTF-8' -H 'Accept: application/vnd.heroku+json; version=3' --data-binary '{"quantity":1,"size":"Free","type":"worker"}'
+        run: curl 'https://api.heroku.com/apps/buckthebot/formation/worker' \
+             -X PATCH -H "Authorization: Bearer ${{ secrets.HEROKU_API_KEY }}" \
+             -H 'Content-Type: application/json; charset=UTF-8' \
+             -H 'Accept: application/vnd.heroku+json; version=3' \
+             --data '{"quantity":1,"size":"Free","type":"worker"}'
