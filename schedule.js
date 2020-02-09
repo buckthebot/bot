@@ -1,5 +1,6 @@
 const CronJob = require("cron").CronJob;
 const tweetBalance = require("./script/tweet-balance");
+const tweetMorningMessage = require("./script/tweet-morning-message");
 
 function cron(pattern, task) {
     new CronJob(pattern, task, null, true, 'UTC');
@@ -15,10 +16,11 @@ cron("0 0 * * * *", function () {
 // say good morning at 9 o'clock (UTC) (worker should be up since 8:30)
 cron("0 0 9 * * *", function () {
     console.log("Good morning!");
+    tweetMorningMessage();
 });
 
-// check the balance at 10
-cron("0 0 10 * * *", tweetBalance);
+// check the balance at 10 on Mondays
+cron("0 0 10 * * 1", tweetBalance);
 
 // say goodbye at 20 (20:30 workflow will shut down the worker)
 cron("0 0 20 * * *", function () {

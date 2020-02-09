@@ -1,5 +1,6 @@
 const fs = require("fs");
 const Sentiment = require("../util/sentiment");
+const dayNameSentiment = require("../util/day-name-sentiment");
 
 const daysOfTheYear = JSON.parse(fs.readFileSync("./data/days-of-the-year.json", { encoding: "utf-8" }));
 
@@ -15,28 +16,8 @@ for (var i=0; i <= 366; i++) {
     if (days) {
 
         days.forEach(function(day) {
-            // discard common words
-            const wordsSentiment = day.replace(/International/g, "")
-                .replace(/World/g, "")
-                .replace(/Day/g, "")
-                .split(" ")
-                .filter(function(word) {
-                    return word.trim().length;
-                })
-                .map(function(word) {
-                    return sentiment.getSentiment(word) || 0;
-                });
-
-            // calculate sum of the sentiment
-            const total = wordsSentiment.reduce(function(prev, next) {
-                return prev + next;
-            }, 0);
-
-            // and the average
-            const avg = total / wordsSentiment.length;
-
+            const avg = dayNameSentiment(sentiment, day);
             stats.push([currentDate, day, avg])
-
         });
     }
 }
