@@ -4,7 +4,7 @@ const tweet = require("../util/tweet");
 module.exports = function() {
     checkBalance((balance) => {
         if (balance !== undefined) {
-            const status = "My current balance: £" + balance.toFixed(2);
+            const status = `Current total: £${balance.toFixed(2)}. #2brokedevs`;
             tweet(status, () => {
                 console.log("New status:", status);
             });
