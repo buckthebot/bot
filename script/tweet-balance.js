@@ -1,16 +1,18 @@
-const checkBalance = require("../util/check-balance");
+var Ig = require("../util/ig");
+const { igOptions } = require("../util/configs");
 const tweet = require("../util/tweet");
 
-module.exports = function() {
-    checkBalance((balance) => {
-        if (balance !== undefined) {
-            const status = `Current total: £${balance.toFixed(2)}! #2brokedevs (https://medium.com/@buckthebot)`;
-            tweet(status, () => {
-                console.log("New status:", status);
-            });
-        }
-        else {
-            console.log("Unknown balance :(")
-        }
-    });
+module.exports = async function() {
+    const client = new Ig(igOptions);
+    const balance = await client.checkBalance();
+
+    if (balance !== undefined) {
+        const status = `Current total: £${balance.toFixed(2)}! #2brokedevs (https://medium.com/@buckthebot)`;
+        tweet(status, () => {
+            console.log("New status:", status);
+        });
+    }
+    else {
+        console.log("Unknown balance :(")
+    }
 };

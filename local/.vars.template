@@ -14,3 +14,4 @@ export HEROKU_API_KEY=HHHHHHHHHH
 
 # Bot
 export PORT=3000
+export BUCK_DEBUG=
