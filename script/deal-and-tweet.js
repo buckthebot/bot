@@ -6,7 +6,7 @@ async function dealAndTweet() {
     let message = null;
     if (status.status === "NEW_DEAL") {
         const direction = status.dealParams.direction === "BUY" ? "long" : "short";
-        message = `Going ${direction} on $FTSE! #RandomTrading #DontDoItAtHome`;
+        message = `Going ${direction} on $FTSE @ ${status.level}! #RandomTrading #DontDoItAtHome`;
     } else if (status.status === "DEALING") {
         if (status.profit > 0) {
             message = `Yes! Making some bucks! Current position profit: £${status.profit.toFixed(2)}`;

@@ -28,7 +28,8 @@ async function deal() {
             const dealReference = await client.deal(dealParams);
             const confirmation = await client.confirmation(dealReference);
             const success = confirmation.reason === "SUCCESS";
-            return success ? { status: "NEW_DEAL", dealParams } : { status: "ERROR" };
+            const level = confirmation.level;
+            return success ? { status: "NEW_DEAL", dealParams, level } : { status: "ERROR" };
         }
         // otherwise return current profit or loss
         else {
