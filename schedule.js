@@ -21,7 +21,7 @@ cron("0 0 9 * * *", function () {
 });
 
 // deal twice a day, Mon-Fri
-cron("0 0 10,16 * * 1-5", dealAndTweet);
+cron("0 0 10,12,14,16 * * 1-5", dealAndTweet);
 
 // check the balance at 18 Mon-Fri
 cron("0 0 18 * * 1-5", tweetBalance);
