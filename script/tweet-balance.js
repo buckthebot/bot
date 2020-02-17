@@ -8,10 +8,7 @@ module.exports = async function() {
 
     if (balance !== undefined) {
         const status = `Current total: £${balance.toFixed(2)}! #2brokedevs (https://medium.com/@buckthebot)`;
-        tweet(status, (error) => {
-            if (error) {
-                console.error(error);
-            }
+        tweet(status, () => {
             console.log("New status:", status);
         });
     }
