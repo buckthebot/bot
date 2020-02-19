@@ -1,12 +1,7 @@
 const fs = require("fs");
 const Sentiment = require("../util/sentiment");
 const dayNameSentiment = require("../util/day-name-sentiment");
-
-function getHashTag(dayName) {
-    return "#" + dayName.replace(/International/g, "")
-        .replace(/World/g, "")
-        .replace(/ /g, "");
-}
+const getHashtag = require("../util/get-hashtag");
 
 /**
  * List of possible greetings to post on Tweeter. The number indicates the maximum sentiment score a day name
@@ -75,7 +70,7 @@ module.exports = function(date) {
     if (days.length) {
         const randomDay = days[Math.floor(Math.random() * days.length)];
         const sentimentScore = dayNameSentiment(seniment, randomDay);
-        const hashTag = getHashTag(randomDay);
+        const hashTag = getHashtag(randomDay);
         const hello = pickMessage(HELLO_MESSAGES, sentimentScore);
         const dayMessage = pickMessage(DAY_MESSAGES, sentimentScore).replace("{day}", hashTag);
 
