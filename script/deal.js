@@ -1,8 +1,11 @@
 var Ig = require("../util/ig");
 const { igOptions } = require("../util/configs");
+const flattenPrices = require("../util/flatten-prices");
 
-async function deal() {
+async function deal(strategy) {
     const client = new Ig(igOptions);
+
+    const epic = "IX.D.FTSE.MTI.IP";
 
     try {
         // potential bug: request sometimes returns an empty list when positions exist
@@ -16,11 +19,19 @@ async function deal() {
 
         // If there are no deals, create a new random deal
         if (positions.length === 0) {
+            var pricesData = await client.getData({
+                epic: epic,
+                resolution: "HOUR",
+                numPoints: 20
+            });
+            // use mid close, discarding the current price
+            const flatPrices = flattenPrices(pricesData.prices).slice(0, -1);
+
             // hardcoded deal params, only direction is randomised
             const dealParams = {
-                epic: "IX.D.FTSE.MTI.IP",
+                epic: epic,
                 size: 1,
-                direction: Math.random() < 0.5 ? "BUY" : "SELL",
+                direction: strategy.predict(flatPrices) === 1 ? "BUY" : "SELL",
                 limitDistance: 15, // lotSize for the market is 10 meaning max profit/loss on a position is 150 (size*lot*distance)
                 stopDistance: 15,
                 currencyCode: "GBP"
