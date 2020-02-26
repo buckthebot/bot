@@ -95,6 +95,19 @@ Ig.prototype.deal = async function(params) {
 };
 
 /**
+ * @param {String} params.epic
+ * @param {String} params.resolution
+ * @param {Number} params.numPoints
+ */
+Ig.prototype.getData = async function(params) {
+    return await this.request({
+        method: "GET",
+        version: 3,
+        url: `prices/${params.epic}?resolution=${params.resolution}&max=${params.numPoints}&pageSize=0`
+    })
+};
+
+/**
  * Receive the confirmation for a deal
  * @param {String} params.dealReference
  */
