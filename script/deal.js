@@ -5,7 +5,7 @@ const flattenPrices = require("../util/flatten-prices");
 async function deal(strategy) {
     const client = new Ig(igOptions);
 
-    const epic = "IX.D.FTSE.MTI.IP";
+    const epic = "IX.D.FTSE.IFM.IP";
 
     try {
         // potential bug: request sometimes returns an empty list when positions exist
@@ -32,8 +32,8 @@ async function deal(strategy) {
                 epic: epic,
                 size: 1,
                 direction: strategy.predict(flatPrices) === 1 ? "BUY" : "SELL",
-                limitDistance: 15, // lotSize for the market is 10 meaning max profit/loss on a position is 150 (size*lot*distance)
-                stopDistance: 15,
+                limitDistance: 50, // lotSize for the market is 2 meaning max profit/loss on a position is 100 (size*lot*distance)
+                stopDistance: 50,
                 currencyCode: "GBP"
             };
             const dealReference = await client.deal(dealParams);
