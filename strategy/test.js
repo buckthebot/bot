@@ -2,6 +2,7 @@ var fs = require("fs");
 var flatterPrices = require("../util/flatten-prices");
 var randomStrategy = require("./random");
 var trendStrategy = require("./trend");
+var coronavirusStrategy = require("./coronavirus");
 
 var dataSets = [
     { name: "FTSE", path: "./data/sample-ftse.json", lot: 1 },
@@ -52,4 +53,4 @@ function test(strategies) {
     console.log("");
 }
 
-test([ randomStrategy, trendStrategy ]);
+test([ randomStrategy, trendStrategy, coronavirusStrategy ]);

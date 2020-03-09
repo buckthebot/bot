@@ -2,7 +2,7 @@ const CronJob = require("cron").CronJob;
 const tweetBalance = require("./script/tweet-balance");
 const tweetMorningMessage = require("./script/tweet-morning-message");
 const dealAndTweet = require("./script/deal-and-tweet");
-const trendStrategy = require("./strategy/trend");
+const coronavirusStrategy = require("./strategy/coronavirus");
 
 function cron(pattern, task) {
     new CronJob(pattern, task, null, true, 'UTC');
@@ -22,7 +22,7 @@ cron("0 0 9 * * *", function () {
 });
 
 // deal, Mon-Fri
-cron("0 5 9-17 * * 1-5", dealAndTweet.bind(null, trendStrategy));
+cron("0 5 9-17 * * 1-5", dealAndTweet.bind(null, coronavirusStrategy));
 
 // check the balance at 18 Mon-Fri
 cron("0 0 18 * * 1-5", tweetBalance);
