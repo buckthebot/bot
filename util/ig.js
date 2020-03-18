@@ -107,6 +107,14 @@ Ig.prototype.getData = async function(params) {
     })
 };
 
+Ig.prototype.getActivity = async function(params) {
+    return await this.request({
+        method: "GET",
+        version: 1,
+        url: `history/transactions/ALL_DEAL/${params.milliseconds}`
+    });
+};
+
 /**
  * Receive the confirmation for a deal
  * @param {String} params.dealReference
