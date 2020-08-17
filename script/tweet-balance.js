@@ -15,7 +15,7 @@ module.exports = async function() {
     const info = `Today: ${profits.length} transactions; profit/loss (£): ${total.toFixed(2)}.`;
 
     if (balance !== undefined) {
-        const status = `Current total: £${balance.toFixed(2)}! #2brokedevs (https://medium.com/@buckthebot)\n\n${info}`;
+        const status = `Current total: £${balance.toFixed(2)}!\n\n${info}`;
         tweet(status, () => {
             console.log("New status:", status);
         });
